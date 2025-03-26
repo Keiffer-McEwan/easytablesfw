@@ -17,6 +17,9 @@ case $input in
         ;;
     1)
         echo "Enter 1 to block one ip"
+        echo "Enter 2 to block a /24 range (XXX.XXX.XXX.0)"
+        echo "Enter 3 to block a /16 range (XXX.XXX.0.0)"
+        echo "Enter 4 to block a /8 range (XXX.0.0.0)"
 
         read -p "Enter your choice: " blockchoice
 
@@ -28,6 +31,24 @@ case $input in
             read -p "Enter the fourth octet: " oct4
             echo "Blocking incoming $oct1.$oct2.$oct3.$oct4"
             iptables -A INPUT -s $oct1.$oct2.$oct3.$oct4 -j DROP
+            ;;
+        2)
+            read -p "Enter the first octet: " oct1
+            read -p "Enter the second octet: " oct2
+            read -p "Enter the third octet: " oct3
+            echo "Blocking incoming $oct1.$oct2.$oct3.0/24"
+            iptables -A INPUT -s $oct1.$oct2.$oct3.0/24 -j DROP
+            ;;
+        3)
+            read -p "Enter the first octet: " oct1
+            read -p "Enter the second octet: " oct2
+            echo "Blocking incoming $oct1.$oct2.0.0/16"
+            iptables -A INPUT -s $oct1.$oct2.0.0/16 -j DROP
+            ;;
+        3)
+            read -p "Enter the first octet: " oct1
+            echo "Blocking incoming $oct1.0.0.0/8"
+            iptables -A INPUT -s $oct1.0.0.0/8 -j DROP
             ;;
         *)
             clear
