@@ -45,7 +45,7 @@ case $input in
             echo "Blocking incoming $oct1.$oct2.0.0/16"
             iptables -A INPUT -s $oct1.$oct2.0.0/16 -j DROP
             ;;
-        3)
+        4)
             read -p "Enter the first octet: " oct1
             echo "Blocking incoming $oct1.0.0.0/8"
             iptables -A INPUT -s $oct1.0.0.0/8 -j DROP
