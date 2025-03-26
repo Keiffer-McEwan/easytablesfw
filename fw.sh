@@ -6,6 +6,7 @@ do
 echo "Enter 0 to save tables and exit"
 echo "Enter 1 to block incoming ips"
 echo "Enter 2 to display the table"
+echo "Enter 3 to delete a rule"
 
 read -p "Enter what you would like the program to do: " input
 
@@ -60,6 +61,24 @@ case $input in
         clear
         iptables -L -v -n --line-numbers
         ;;
+    3)
+        clear
+        iptables -L -v -n --line-numbers
+        echo "enter 1 to choose from INPUT"
+        echo "enter 2 to choose from OUTPUT"
+        echo "enter 3 to choose from FORWARD"
+        read -p "what section would you like to delete a rule from" chainchoice
+
+        case $chainchoice in 
+        1)
+            ;;
+        2)
+            ;;
+        3)
+            ;;
+        *)
+            ;;
+        esac
     *)
         clear
         echo "!!-- please choose something from the list --!!"
