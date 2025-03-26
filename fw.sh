@@ -12,7 +12,7 @@ read -p "Enter what you would like the program to do: " input
 case $input in 
     0)
         echo "saving and exiting"
-        echo "/sbin/iptables-save <remove in final>"
+        /sbin/iptables-save
         con=0
         ;;
     1)
@@ -27,7 +27,7 @@ case $input in
             read -p "Enter the third octet: " oct3
             read -p "Enter the fourth octet: " oct4
             echo "Blocking incoming $oct1.$oct2.$oct3.$oct4"
-            echo "iptables -A INPUT -s $oct1.$oct2.$oct3.$oct4 -j DROP"
+            iptables -A INPUT -s $oct1.$oct2.$oct3.$oct4 -j DROP
             ;;
         *)
             clear
@@ -36,7 +36,8 @@ case $input in
         esac
         ;;
     2)
-        echo "iptables -L -v -n --line-numbers"
+        clear
+        iptables -L -v -n --line-numbers
         ;;
     *)
         clear
