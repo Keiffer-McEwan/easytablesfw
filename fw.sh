@@ -88,6 +88,7 @@ case $input in
             echo "you chose someything not lsited returning to main script"
             ;;
         esac
+        ;;
     *)
         clear
         echo "!!-- please choose something from the list --!!"
