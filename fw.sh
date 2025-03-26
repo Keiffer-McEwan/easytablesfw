@@ -63,7 +63,6 @@ case $input in
         ;;
     3)
         clear
-        iptables -L -v -n --line-numbers
         echo "enter 1 to choose from INPUT"
         echo "enter 2 to choose from OUTPUT"
         echo "enter 3 to choose from FORWARD"
@@ -71,12 +70,22 @@ case $input in
 
         case $chainchoice in 
         1)
+            iptables -L --line-numbers --list INPUT
+            read -p "what is the line number you want to remove: " lnin
+            iptables -D INPUT $lnin 
             ;;
         2)
+            iptables -L --line-numbers --list OUTPUT
+            read -p "what is the line number you want to remove: " lnout
+            iptables -D OUTPUT $lnout
             ;;
         3)
+            iptables -L --line-numbers --list FORWARD
+            read -p "what is the line number you want to remove: " lnfw
+            iptables -D FORWARD $lnfw
             ;;
         *)
+            echo "you chose someything not lsited returning to main script"
             ;;
         esac
     *)
