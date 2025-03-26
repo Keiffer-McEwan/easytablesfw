@@ -1,3 +1,4 @@
+#!/bin/bash
 con=1 
 clear
 echo "This script is for me so that i dont need to remeber iptables commands"
