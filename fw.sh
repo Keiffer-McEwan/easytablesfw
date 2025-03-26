@@ -21,9 +21,7 @@ case $input in
         echo "Enter 2 to block a /24 range (XXX.XXX.XXX.0)"
         echo "Enter 3 to block a /16 range (XXX.XXX.0.0)"
         echo "Enter 4 to block a /8 range (XXX.0.0.0)"
-
         read -p "Enter your choice: " blockchoice
-
         case $blockchoice in
         1)
             read -p "Enter the first octet: " oct1
@@ -67,7 +65,6 @@ case $input in
         echo "enter 2 to choose from OUTPUT"
         echo "enter 3 to choose from FORWARD"
         read -p "what section would you like to delete a rule from" chainchoice
-
         case $chainchoice in 
         1)
             iptables -L --line-numbers --list INPUT
