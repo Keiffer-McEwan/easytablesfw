@@ -1,7 +1,6 @@
 #!/bin/bash
 con=1 
 clear
-echo "This script is for me so that i dont need to remeber iptables commands"
 while [ $con -eq 1 ]
 do
 echo "Enter 0 to save tables and exit"
@@ -51,34 +50,31 @@ case $input in
             iptables -A INPUT -s $oct1.0.0.0/8 -j DROP
             ;;
         *)
-            clear
             echo "no valid choice retrning to main menu"
             ;;
         esac
         ;;
     2)
-        clear
         iptables -L -v -n --line-numbers
         ;;
     3)
-        clear
         echo "enter 1 to choose from INPUT"
         echo "enter 2 to choose from OUTPUT"
         echo "enter 3 to choose from FORWARD"
         read -p "what section would you like to delete a rule from" chainchoice
         case $chainchoice in 
         1)
-            iptables -L --line-numbers --list INPUT
+            iptables -L INPUT --line-numbers
             read -p "what is the line number you want to remove: " lnin
             iptables -D INPUT $lnin 
             ;;
         2)
-            iptables -L --line-numbers --list OUTPUT
+            iptables -L OUTPUT --line-numbers
             read -p "what is the line number you want to remove: " lnout
             iptables -D OUTPUT $lnout
             ;;
         3)
-            iptables -L --line-numbers --list FORWARD
+            iptables -L FORWARD --line-numbers
             read -p "what is the line number you want to remove: " lnfw
             iptables -D FORWARD $lnfw
             ;;
@@ -88,7 +84,6 @@ case $input in
         esac
         ;;
     *)
-        clear
         echo "!!-- please choose something from the list --!!"
         ;;
 esac
